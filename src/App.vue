@@ -2,6 +2,8 @@
   <div>
     <!-- 给按钮添加点击事件 点击模态框显示 -->
     <button @click="showModel=true">showModel</button>
+    <!-- 通过js的方式控制组件 -->
+    <button @click="showModelJs">showModelJs</button>
     <!-- 双向绑定给组件 -->
     <my-model v-model="showModel" />
   </div>
@@ -18,6 +20,10 @@ export default {
     }
   },
   methods: {
+    showModelJs () {
+      // 以js的方式控制显示
+      this.$myModel()
+    }
   },
   components: {
     // 定义子组件

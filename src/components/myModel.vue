@@ -1,6 +1,6 @@
 <template>
   <!-- 控制显示与隐藏 -->
-  <div class="modal-mask" v-if="value">
+  <div class="modal-mask" v-if="value||showModel">
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">
@@ -15,7 +15,7 @@
           <slot name="footer">
             default footer
             <!-- 点击ok关闭模态框 v-model会传一个value和inpput -->
-            <button class="modal-default-button" @click="$emit('input',false)">OK</button>
+            <button class="modal-default-button" @click="close">OK</button>
           </slot>
         </div>
       </div>
@@ -26,7 +26,18 @@
 <script>
 export default {
   // 接受父组件传过来的值
-  props: ['value']
+  props: ['value'],
+  data () {
+    return {
+      showModel: false
+    }
+  },
+  methods: {
+    close () {
+      this.$emit('input', false)
+      this.showModel = false
+    }
+  }
 }
 </script>
 
